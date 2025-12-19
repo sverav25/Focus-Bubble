@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Bubble</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="hero-section">
+        <div class="app-container">
+            <h1>Focus Bubble</h1>
+
+            <!-- Timer Display -->
+            <div class="half-circle-container">
+                <div class="half-circle"></div>
+                <div class="half-circle-2"></div>
+            </div>
+            <div id="timer" class="timer-display">0:06</div>
+
+            <div class="session-tracker">
+                <div class="session-box"></div>
+                <div class="session-box"></div>
+                <div class="session-box"></div>
+                <div class="session-box"></div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="controls">
+                <div class="btnback">
+                    <button id="startBtn"><svg viewBox="0 0 24 24" width="35" height="35" aria-hidden="true">
+                            <polygon points="8,5 19,12 8,19" fill="currentColor" />
+                        </svg>
+                    </button>
+                    <button id="pauseBtn"><svg viewBox="0 0 24 24" width="35" height="35" aria-hidden="true">
+                            <rect x="6" y="5" width="4" height="14" fill="currentColor" />
+                            <rect x="14" y="5" width="4" height="14" fill="currentColor" />
+                        </svg>
+                    </button>
+                    <button id="resetBtn"><svg viewBox="0 0 24 24" width="35" height="35" aria-hidden="true"
+                            style="transform: rotate(45deg);">
+                            <path d="M12 5a7 7 0 1 1-6.3 4H3l3.5-3.5L10 9H7.9A5 5 0 1 0 12 7V5z" fill="currentColor" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Session Labels -->
+            <div class="session-label" id="sessionLabel">Focus Session</div>
+
+
+            <!-- Settings Button (Top Right Corner) -->
+            <button id="settingsBtn" class="settings-btn"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg></button>
+
+            <!-- Settings Modal -->
+            <div id="settingsModal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>Timer Settings</h2>
+
+                    <div class="input-group">
+                        <label for="focusInput">Focus Time</label>
+                        <input type="number" id="focusInput" min="1" value="25">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="shortBreakInput">Short Break</label>
+                        <input type="number" id="shortBreakInput" min="1" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="longBreakInput">Long Break</label>
+                        <input type="number" id="longBreakInput" min="1" value="35">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fogIncreaseSelect">Fog Increase Speed</label>
+                        <select id="fogIncreaseSelect">
+                            <option value="0.5">Very Fast (30s)</option>
+                            <option value="1" selected>Fast (1m)</option>
+                            <option value="2">Normal (2m)</option>
+                            <option value="3">Slow (3m)</option>
+                            <option value="5">Very Slow (5m)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fogDecreaseSelect">Fog Decrease Speed</label>
+                        <select id="fogDecreaseSelect">
+                            <option value="1">Very Fast (1m)</option>
+                            <option value="2">Fast (2m)</option>
+                            <option value="3" selected>Normal (4m)</option>
+                            <option value="6">Slow (6m)</option>
+                            <option value="10">Very Slow (10m)</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button id="closeSettings" class="close-btn">Close</button>
+                        <button id="saveSettings" class="save-btn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task List Section -->
+        <div class="task-container">
+            <!-- Task Input -->
+            <div class="task-input-group">
+                <input type="text" id="taskInput" placeholder="Write you tasks" />
+                <button id="addTaskBtn">Add</button>
+            </div>
+
+            <!-- Task List -->
+            <ul id="taskList" class="task-list">
+            </ul>
+        </div>
+
+    </div>
+    <div class="info-section">
+        <div id="what" class="what segment">
+            <h3>What is Focus Bubble?</h3>
+            <p>Focus Bubble is a unique Pomodoro Timer that
+                helps you stay focused by subtly guiding your attention. It
+                creates a calm, distraction-free space so you can
+                concentrate on your tasks more effectively. Take control of
+                your time and learn with ease.</p>
+        </div>
+        <div id="why" class="why segment">
+            <h3>Why Focus Bubble?</h3>
+            <p>Studies show that most people lose concentration within
+                minutes due to constant distractions, notifications, and
+                tab switching. Focus Bubble was built for this exact problem
+                — to help you resist constant distractions and focus easier.</p>
+        </div>
+        <div id="how" class="how segment">
+            <h3>How to use Focus Bubble?</h3>
+            <p>Pick a task you want to complete, set your preferred
+                timer intervals, and start working. Focus Bubble will
+                gently monitor your attention — if you get distracted,
+                the screen will blur, helping you refocus and stay on
+                track. It's a simple, visual way to keep your mind
+                on what matters most.</p>
+        </div>
+        <p>Fill up the boxes after every Focus Session and be awarded
+            with Long Break after filling every one of them.</p>
+    </div>
+
+    <div id="scrollControlBar" class="scroll-control-bar hidden">
+        <div class="controls-left">
+            <button id="scrollStartBtn"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+                    <polygon points="8,5 19,12 8,19" fill="currentColor" />
+                </svg></button>
+            <button id="scrollPauseBtn"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+                    <rect x="6" y="5" width="4" height="14" fill="currentColor" />
+                    <rect x="14" y="5" width="4" height="14" fill="currentColor" />
+                </svg></button>
+            <button id="scrollResetBtn"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"
+                    style="transform: rotate(45deg);">
+                    <path d="M12 5a7 7 0 1 1-6.3 4H3l3.5-3.5L10 9H7.9A5 5 0 1 0 12 7V5z" fill="currentColor" />
+                </svg></button>
+        </div>
+        <div class="controls-right">
+            <span id="scrollTimer">25:00</span>
+        </div>
+    </div>
+
+    <!-- Fog Overlay -->
+    <div id="fog-layer" class="hidden fog"></div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
